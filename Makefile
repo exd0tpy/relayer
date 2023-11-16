@@ -16,10 +16,9 @@ all: lint install
 # Build / Install
 ###############################################################################
 
-ldflags = -X github.com/cosmos/relayer/v2/cmd.Version=$(VERSION) \
-					-X github.com/cosmos/relayer/v2/cmd.Commit=$(COMMIT) \
-					-X github.com/cosmos/relayer/v2/cmd.Dirty=$(DIRTY)
-
+ldflags = -X github.com/cosmos/relayer/v2/cmd.Version=2.4.1 \
+					-X github.com/cosmos/relayer/v2/cmd.Commit=4598b0ec8a1ecf65f3fd42c4d8931333c831c043 \
+					-X github.com/cosmos/relayer/v2/cmd.Dirty=5
 
 ldflags += $(LDFLAGS)
 ldflags := $(strip $(ldflags))
@@ -43,9 +42,8 @@ build-zip: go.sum
 	@tar -czvf release.tar.gz ./build
 
 install: go.sum
-	@echo $(BUILD_FLAGS)
 	@echo "installing rly binary..."
-	@go build -mod=readonly $(BUILD_FLAGS) -o $(GOBIN)/rly main.go
+	@go build -o $(GOBIN)/rly main.go
 
 build-gaia-docker:
 	docker build -t cosmos/gaia:$(GAIA_VERSION) --build-arg VERSION=$(GAIA_VERSION) -f ./docker/gaiad/Dockerfile .
