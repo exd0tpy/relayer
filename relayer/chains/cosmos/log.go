@@ -128,7 +128,7 @@ func (cc *CosmosProvider) LogSuccessTx(res *sdk.TxResponse, msgs []provider.Rela
 
 	// Log the succesful transaction with fields
 	cc.log.Info(
-		"Successful transaction",
+		"Successful transaction!!!!!!!!!!!!!!",
 		fields...,
 	)
 }
